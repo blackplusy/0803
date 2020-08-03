@@ -170,7 +170,25 @@
 			语法:truncate table 表;
 				需求:删除goods表中所有信息
 				truncate table goods;
-				
+
+9.管理mysql的工具
+	mysql workbench
+	sqlyog(小海豚)
+	phpmyadmin
+	navicat
+	dbeaver
+	toad
+10.查询的分类
+	简单查询
+	多表查询
+	子查询
+	分组查询
+11.简单查询
+	http://www.ecshop119.com/ecshopjc-868.html
+	a.查询所有数据
+	b.查询指定列的数据
+	c.查询指定行的数据
+	d.查询指定行的列的数据
 
 
 
