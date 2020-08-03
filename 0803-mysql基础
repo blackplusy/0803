@@ -277,10 +277,31 @@
 			查询ecs_category表中cat_id为上面查询出来结果的分类名称
 			select cat_name from ecs_category where cat_id in (select cat_id from ecs_goods where shop_price>1000);
 	子查询可以用于数据的新增、修改和删除
-		
+
+--练习：7.jpg
+	A.
+	查询c表中满足条件的c#
+		select c# from c where cn='税收基础';
+	查询sc表中c#为上面查询出来的s#
+		select s# from sc where c# in (select c# from c where cn='税收基础');
+	查询s表中满足s#为上面查出内容的s#，sn
+		select s#,sn froms where s# in (select s# from sc where c# in (select c# from c where cn='税收基础'));
+	B.
+	查询sc表中满足条件的s#
+		select s# from sc where c#='C2';
+	查询s表中s#为上面查询结果的sn，sd	
+		select sn,sd from s where s# in (select s# from sc where c#='C2');
+	C.
+	select sn,sd from s where s# in (select s# from sc where c#!='C5');
 
 
-
+--练习：2.jpg
+	select name from student where id in (select id from achievement where mark>85);
+	select count(id) from achievement where mark>=90;
+	insert into achievement values((select id from student where name='Robert'),80);
+	update achievement set mark=87 where id=(select id from student where name='Rose');
+	delete from achievement where id=(select id from student where name='Betty');
+	delete from student where name='Betty';	
 
 
 
