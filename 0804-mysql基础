@@ -41,4 +41,30 @@ b.内联查询
 			where g.cat_id=c.cat_id
 			and c.cat_name='3G手机';
 
+练习-4.jpg
+	select s#,grade from sc where c#='C2';
+	select sname from s where sname like 'D%';
+	select s.s#,s.sname  from s,sc,c 
+	where s.s#=sc.s#
+	and   c.c#=sc.c#
+	and c.cname='Maths';
+	select s# from sc where c# in ('C2','C4');
+
+练习-1.jpg
+	select * from test1 where department='计算机系' and place='北京';
+	update test1 set department='信息学院' where department='计算机系';
+	select t1.no,t1.name,t2,grade,t2.courses  from test1 t1,test2 t2 
+	where t1.no=t2.no
+	and t2.grade>=75;
+c.sakila数据库的导入
+	c1.下载sakila样例数据库
+		https://dev.mysql.com/doc/index-other.html
+	c2.解压压缩包
+	c3.命令提示符进入到解压后的文件夹
+	c4.登录mysql
+		mysql -u root -p
+	c5.导入sakila-schema.sql
+		source sakila-schema.sql;
+	c6.导入sakila-data.sql;
+		source sakila-data.sql;
 
