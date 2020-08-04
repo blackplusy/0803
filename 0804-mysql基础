@@ -67,4 +67,63 @@ c.sakila数据库的导入
 		source sakila-schema.sql;
 	c6.导入sakila-data.sql;
 		source sakila-data.sql;
+练习:
+查询以C开头的国家有哪些城市?
+select c.city from city c,country co
+where c.country_id=co.country_id
+and co.country like 'C%';
+
+查询客户表中名字为MARY的所在城市?
+select   c.city
+from city c,address a,customer cu
+where c.city_id=a.city_id
+and a.address_id=cu.address_id
+and cu.first_name='MARY';
+
+查询客户表中名字为MARY的所在国家?
+
+select co.country
+from country co,city c,address a,customer cu
+where co.country_id=c.country_id
+and c.city_id=a.city_id
+and a.address_id=cu.address_id
+and cu.first_name='MARY';
+
+2.分组查询
+按照某种属性进行归类，分类查询
+a.分组函数
+	分组函数通常和分组一起使用，可以单独使用
+	max()   最大
+	min()   最小
+	avg()   平均
+	sum()   求和
+	count() 计数
+	需求:查询ecs_goods表中本店售价最高的商品名称
+		select max(shop_price) from ecs_goods;
+		select goods_name from ecs_goods where shop_pirce=(select max(shop_price) from ecs_goods);
+b.分组查询
+	语法:select 列 from 表
+			where 条件
+				group by 分组条件
+					having 分组后过滤条件;
+	select   country_id  from city group by country_id;   --Y
+	select   country_id,city  from city group by country_id; --X
+	select * from city group by country_id;--X
+	分组条件的判断
+		每后面跟的通常是分组条件
+	需求:查询ecs_goods表中每种分类id对应多少个商品，要求显示分类id，商品数量
+		select cat_id,count(goods_name)  from ecs_goods group by cat_id;
+	需求:查询每种分类有多少的商品，要求显示分类名称，商品数量
+		select  c.cat_name,count(g.goods_name) from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id
+		group by c.cat_name;
+c.分组后过滤
+	where    分组前过滤，不能直接跟分组函数
+	having   分组后过滤，可以跟分组函数
+	需求:查询商品数量超过8的分类名称
+		select  c.cat_name,count(g.goods_name) 
+		from ecs_goods g,ecs_category c
+		where g.cat_id=c.cat_id
+		group by c.cat_name
+		having count(g.goods_name)>8;
 
