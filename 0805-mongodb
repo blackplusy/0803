@@ -108,4 +108,36 @@ abd c.studentno in (11,22,33,44,55);
 		db.xiyouji.find({},{_id:0,name:1})
 	查询指定文档的指定属性
 		 db.xiyouji.find({age:3000},{_id:0,name:1})
+9.查询表达式
+	a.比较
+		$gt   	大于
+		$lt     小于
+		$gte    大于等于
+		$lte    小于等于
+		$ne     不等于
+		db.xiyouji.find({age:{$gte:100}})
+		db.xiyouji.find({age:{$ne:3000}})
+	b.关系
+		$and   同时满足
+		$or    满足一个即可
+		$not   不满足
+		db.xiyouji.find({$and:[{age:{$gte:100}},{age:{$lte:200}}]})
+		db.xiyouji.find({$or:[{name:'8jie'},{name:'shasir'}]})
+	c.存在性
+		db.xiyouji.find({age:{$exists:1}})
+	d.数据类型判断
+		$type
+		1   数值
+		2   字符
+		3   对象
+		4   数组
+		5   二进制数据
+		7   对象id
+		8   布尔
+		9   日期
+		10  空
+		db.xiyouji.find({age:{$type:2}})
+	e.正则表达式
+		模糊查询
+
 
