@@ -76,3 +76,36 @@ abd c.studentno in (11,22,33,44,55);
 		查看当前数据库有哪些集合
 	db.system.version.find()
 		查看system.version集合中所有文档
+5.mongodb的CURD
+	文档的新增
+		db.xiyouji.insert({name:'5kong',age:18})
+	文档的查看
+		db.xiyouji.find({age:18})
+	文档的修改
+		db.xiyouji.update({age:18},{$set:{name:'shasir'}})
+	文档的删除
+		db.xiyouji.remove({age:18})
+6.mongodb文档的新增
+	新增普通文档
+		db.xiyouji.insert({name:'shasir',age:3000})
+	新增文档指定_id
+		db.xiyouji.insert({_id:0,name:'whitebone'})
+	新增多个文档
+		db.xiyouji.insert([{name:'nezha'},{name:'redhair'},{name:'2dog'}])
+	新增内嵌文档
+		db.xiyouji.insert({name:'5kong',jingli:{kill:100,hit:2}})
+7.mongodb的文档的删除
+	删除所有文档
+		db.xiyouji.remove({age:3000})
+	删除指定文档
+		db.xiyouji.remove({})
+8.文档的查看
+	查询指定文档
+		db.xiyouji.find({name:'5kong'})
+	查询所有文档
+		db.xiyouji.find()
+	查询指定属性
+		db.xiyouji.find({},{_id:0,name:1})
+	查询指定文档的指定属性
+		 db.xiyouji.find({age:3000},{_id:0,name:1})
+
