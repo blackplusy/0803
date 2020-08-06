@@ -1,0 +1,42 @@
+1.oracle的版本
+	8i
+	9i     internet
+	10g
+	11g    grid
+	12c    cloud
+2.管理oracle的工具
+	sqlplus
+	isqlplus
+	plsql developer  
+	sql develper
+	em    
+	toad
+	navicat
+3.oracle的服务
+	虚拟机的密码:20110930
+	补充:winserver改密码
+	计算机--管理--本地用户和组--用户--右键administer修改
+	c-----------------/------------------s
+	tnsnames.ora                        oracle的主服务
+	                                    oracle的监听服务
+	a.服务端
+		图形化启动oracle主服务和监听服务
+		计算机--管理--服务和应用程序--服务--Oracle开头
+		OracleServiceORCL    oracle的主服务
+		Oracle...TNSListener oracle的监听服务
+	b.监听的配置
+		win+r--cmd--netca--监听程序配置--删除--下一步X2--监听程序配置--下一步--添加--下一步X3--否
+	c.通过命令的方式启动和关闭oracle的主服务和监听服务
+		c1.监听服务
+			win+r--cmd--lsnrctl status 查看监听服务状态
+			lsnrctl stop    关闭监听服务
+			lsnrctl start   启动监听服务
+		c2.oracle的主服务
+			win+r--cmd-- sqlplus / as sysdba  （管理员登录本地数据库）
+			select status from v$instance;
+			shutdown immediate;
+			startup;
+
+
+
+
