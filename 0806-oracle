@@ -120,6 +120,9 @@
 		非空  列中的数据不能为空
 		检查  列中的数据是否满足条件
 		外键  列中的数据参考另外一张表中的列;
+			1.被参考表的被参考列一定存在
+			2.被参考表的被参考列一定是主键约束
+			3.参考列和被参考列的数据类型一致
 		语法:
 		create table 表(
 			列 数据类型 primary key,
@@ -148,6 +151,51 @@
 			name char(10),
 			sex  char(10) check(sex='男' or sex='女')
 		);
+		需求:订单表dd ,订单信息 info，客户id id(取值于客户表中的客户id(id)),客户表(客户信息 info，客户id id)
+			create table 客户(
+				id number primary key,
+				info char(20)
+			);
+			create table 订单(
+				id number references 客户(id),
+				info char(20)
+			);
+
+6.事务
+	一件事有开端就一定有结束
+	我--------------------------/------------------------大佬们
+	收钱-------------------------------------------------1.转账
+	commit;         提交数据到数据库中(提交)
+	rollback;       数据库恢复到最后一次提交的状态(回滚)
+	DML语句会触发事务的开始，一定要结束
+7.数据的新增修改删除
+	字符类型需要加单引号
+	数值类型直接使用
+	日期类型使用to_date()函数
+	a.数据的新增
+		1>向指定列新增数据
+			insert into 表(列1,列2...) values(值1,值2....);
+		2>向所有列新增数据
+			insert into 表 values(值1,值2....);
+			create table 商品(
+				商品名称  char(10),
+				商品价格  number,
+				出厂日期  date
+			);
+			需求:商品表中新增数据，商品名称o8ma,价格500，出厂日期当前时间
+			insert into 商品 values('o8ma',500,sysdate);
+			insert into 商品 values('o8ma',500,to_date('2000-01-01','YYYY-MM-DD'));
+			insert into 商品 values('o8ma',500,to_date('2000-01-01 20:00:00','YYYY-MM-DD hh24:mi:ss'));
+	b.数据的修改
+		update 表 set 列=值 where 条件;
+		需求:查询商品表中名字是o8ma的价格修改为0，名字修改为ladeng
+			update 商品  set 商品名称='ladeng',商品价格=0 where 商品名称='o8ma';
+	c.数据的删除
+		delete
+			语法:delete 表 where 条件;
+		truncate
+			语法:truncate table 表;
+
 
 
 
