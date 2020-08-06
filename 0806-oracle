@@ -90,7 +90,66 @@
 		语法:drop user 用户;
 		需求:删除kobe用户
 		drop user kobe;
-		
+5.表结构
+	a.数据类型
+		字符    char varchar varchar2
+		数值    number
+		日期    date
+	b.表结构的创建
+		create table 表 (
+			列 数据类型,
+			列 数据类型
+		);
+	c.查看表结构
+		desc 表名;
+		右键表--describe
+		右键表--view
+		小箭头
+	d.修改表结构
+		新增列
+			alter table 表 add 列 数据类型;
+		修改列
+			alter table 表 modify 列 数据类型；
+		删除列
+			alter table 表 drop column 列;
+	e.删除表结构
+		语法:drop table 表名;
+	f.约束
+		主键  列中的数据唯一，每张表中只能有一个，不能为空
+		唯一  列中的数据唯一，作为主键的补充，可以为空
+		非空  列中的数据不能为空
+		检查  列中的数据是否满足条件
+		外键  列中的数据参考另外一张表中的列;
+		语法:
+		create table 表(
+			列 数据类型 primary key,
+			列 数据类型 unique,
+			列 数据类型 not null,
+			列 数据类型 check(检查条件),
+			列 数据类型 references 被参考表(被参考列)
+		);
+		需求:创建表user1，里面2个列一个是名字name字符类型，一个是id 数值类型 主键
+		create table user1 (
+				name char(10),
+				id number primary key
+		);
+		需求:创建表bank，2个列，一个id主键约束，一个身份证(card)唯一约束
+		create table bank(
+			id number primary key,
+			card number unique
+		);
+		需求:创建表user2里面2个列一个是名字name字符类型，一个是id 数值类型 非空
+		create table user2(
+			name char(10),
+			id number not null
+		);
+		需求:创建表user3，员工名字，员工性别(只能是男或者女)
+		create table user3 (
+			name char(10),
+			sex  char(10) check(sex='男' or sex='女')
+		);
+
+
 
 
 
