@@ -36,6 +36,68 @@
 			select status from v$instance;
 			shutdown immediate;
 			startup;
+	d.客户端配置
+		C:\oracle\product\10.2.0\db_1\NETWORK\ADMIN\tnsnames.ora
+		ORCL =                                                                      标识
+		  (DESCRIPTION = 
+		    (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.255.132)(PORT = 1521))       协议、主机名/IP、端口
+		    (CONNECT_DATA =
+		      (SERVER = DEDICATED)
+		      (SERVICE_NAME = orcl)                                                 服务名
+		    )
+		  )
+		测试tns配置是否正常
+			win+r--cmd--tnsping orcl
+
+4.oracle的用户和角色
+	a.管理员
+		sys
+		system
+		登录时候的角色一定要选择sysdba
+	b.角色
+		权限的集合
+		sysdba 	管理员权限
+		sysoper 系统操作员权限
+		normal  普通用户
+	c.创建用户
+		语法:create user 用户 identified by 密码;
+		需求:创建用户kobe，密码nba
+			create user kobe identified by nba;
+	d.权限
+		sysdba    管理员权限
+		connect   链接数据库的权限
+		resource  调用数据库资源权限
+		1>授权
+		语法:grant 权限 to 用户;
+		需求:赋予kobe用户connect 和resource 权限
+			grant connect,resource to kobe;
+		2>回收授权
+		语法:revoke 权限 from 用户;
+		需求:取消kobe用户链接数据库权限
+			revoke connect from kobe;
+	e.修改用户
+		修改密码
+		语法：alter user 用户 identified by 密码;
+		需求:修改kobe用户密码为cba
+			revoke connect from kobe;
+		锁定、解锁用户
+		语法:alter user 用户 [identified by 密码] account unlock(lock);
+		需求:锁定kobe用户
+			alter user kobe account lock;
+		需求:解锁scott用户
+			alter user scott identified by tiger account unlock;
+	f.删除用户
+		语法:drop user 用户;
+		需求:删除kobe用户
+		drop user kobe;
+		
+
+
+
+
+
+
+
 
 
 
