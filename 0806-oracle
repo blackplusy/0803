@@ -305,7 +305,48 @@
 		select * from a left join b on a.a=b.a;
 	右联查询
 		语法:select 列 from 左表 right join 右表 on 左表.列=右表.列;
-		
+
+10.分组查询
+	a.分组函数(聚合函数)
+		可以单独使用，和分组一起使用
+		max
+		min
+		avg
+		sum
+		count
+	b.分组
+		语法:select 列 from 表
+				where 条件
+					group by 分组条件
+						having 分组后过滤条件
+		有group by 才有having，没有group by 就没有having
+		where     分组前过滤，不能直接跟分组函数
+		having    分组后过滤，可以直接跟分组函数
+		双分组
+		需求:查询emp表中每个部门的每个岗位有多少人
+		select deptno,job,count(*) from emp group by deptno,job;
+11.子查询
+	一条SQL语句的执行依赖于另外一条SQL语句的执行结果
+		select * from (
+		select t.*,rownum rn from emp t);
+		select e.ename  from emp e,(select max(sal) sal from emp) f
+		where e.sal=f.sal;
+
+		select max(sal) from emp
+		select ename from emp where sal=(select max(sal) from emp)
+12.分页
+	rowid   标识物理存储位置
+	rownum  行号，包含1,不属于任何一张表
+	a.查询emp表中前8行数据
+		select * from emp where rownum<=8;
+	b.查询emp表中8-12行数据
+		select * from emp where rownum<=12 and rownum>=8;
+		select * from (
+		select t.*,rownum rn from emp t);
+		select * from (
+		select t.*,rownum rn from emp t);
+
+
 
 
 
