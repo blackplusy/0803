@@ -1,0 +1,36 @@
+1.常见操作系统平台
+	a.unix
+		IOS MAC OS aix
+	b.linux
+		redhat centos
+		suse   opensuse
+		ubuntu kali、backtrack
+		COS    redstar
+		麒麟    红旗
+	c.windows
+		server
+			03 08 12 16
+		desktop
+			win7  winxp  win10 	
+2.虚拟化、云、大数据
+	虚拟化
+		虚拟机软件
+			vmware 稳定，慢
+			vbox   快，不稳定
+			kvm	   linux内核
+	云
+		云计算
+		云存储
+	大数据
+3.操作系统的安装
+	D:\\测试用软件\\ISO
+	D:\\测试用软件\\vm
+	a.操作系统
+		i386 i686  32位操作系统
+		x86_64 x64 64位操作系统
+		
+
+			
+
+
+
