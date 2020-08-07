@@ -85,13 +85,32 @@
 		info ls   查看ls命令的说明文档
 	c.--help 常见参数
 		ls --help  查看ls命令的常见参数
-		
+6.网络设置
+	a.linux设置
+		1>linux中查看IP
+			ifconfig       查看当前系统中激活的网卡
+			ifconfig eth0  查看linux中第一块网卡的信息
+		2>win搜索一个没人用的IP(跟win的IP同一个网段)【用于linux的设置】
+			win+r--cmd--ipconfig
+			win+r--cmd--ping 192.168.4.x(x:1-254)
+			如果出现无法访问或者访问超时说明该IP没人使用
+		3>linux终端中打开setup
+			setup--网络配置--edit devices--eth0--名称、设备不动、取消hdcp(空格)--填写信息
+			--OK--save--save &quit--quit--service network restart(重启网络服务)
+			补充:获取IP地址的方式
+				dhcp 	动态自动获取
+				static 	静态设置
+	b.虚拟机设置	
+		右键标签--设置--网络适配器--桥接、复制物理网络连接状态--确定
+		a.桥接模式   	客户机可以和局域网中其他主机进行通信
+		b.网络地址转换   通过共享主机的IP地址进行转换进而可以上网，无法和局域网中其他主机进行通信
+		c.仅主机         客户机和宿主机的私有通道，无法和局域网中其他主机进行通信
+	c.测试
+		win: ping linux的IP
+		linux: ping win的IP
+				
 
 
-
-
-
-			
 
 
 
