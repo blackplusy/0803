@@ -164,9 +164,82 @@
 			head -3 install.log
 		tail              文件内容后几行
 			tail -2 install.log
-		vi
-
+		vi/vim
 	f.修改文件
+		vi/vim 文件名
+		a.vi的3种模式
+			命令模式
+			编辑模式
+			末行模式
+		b.命令模式
+			跳转
+				gg 	光标跳转到文件内容首行行首
+				100gg 光标跳转到100行行首
+				G   光标跳转到文件内容末行行首
+				^   光标跳转到本行内容行首
+				$   光标跳转到本行内容行尾
+			复制
+				yy  复制当前行内容
+				10yy复制10行内容
+			粘贴
+				p 
+			剪切/删除
+				dd   剪切/删除当前行内容
+				10dd 剪切/删除10行内容
+			搜索
+				？386  文件内容中搜索386关键字
+				/386   文件内容中搜索386关键字
+			命令模式进入到编辑模式的方法
+				i      光标所在位置进行插入，进入到编辑模式
+				O  o
+				S  s
+				A  a
+		c.编辑模式
+			自己动手丰衣足食
+			编辑模式无法直接进入到末行模式，需要返回命令模式(esc)
+		d.末行模式
+			命令模式:
+			:set nu      显示行号
+			:set nonu    取消显示行号
+			:w           保存、另存
+				:w test123 文件零存在当前目录下test123
+			:q           退出
+			:wq! 		 强制保存退出
+			替换
+			:1s/a/bbb/   	第行搜索a替换为bbb，只替换每行第一个
+			:1,10s/a/bbb/g  前10行搜索a替换为bbb，全部替换
+9.网络配置
+	a.配置网络的方式
+		1>setup命令设置
+		2>ifconfig临时设置
+			ifconfig eth0 192.168.4.44
+		3>修改配置文件
+			vim /etc/sysconfig/network-scripts/ifcfg-eth0
+				DEVICE=eth0                           设备名称
+				BOOTPROTO=static                      启动协议(获取IP地址的方式)
+				HWADDR=00:0c:29:5b:74:52              网卡mac地址
+				ONBOOT=yes                            网卡是否随开机启动而启动
+				NETMASK=255.255.254.0                 子网掩码
+				IPADDR=192.168.4.44                   IP地址
+				TYPE=Ethernet                         上网类型
+			重启网络服务
+10.主机名配置
+	a.临时设置主机名(重启系统后失效)
+		hostname heygor.gaga.com
+	b.永久设置主机名(重启系统后生效)
+		vim /etc/sysconfig/network
+		HOSTNAME=heygor.gaga.com
+	c.查看主机名
+		hostname
+11.主机名绑定
+	vim /etc/hosts
+	192.168.4.44  heygor.gaga.com
+
+
+
+
+
+
 
 
 
