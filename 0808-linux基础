@@ -153,7 +153,65 @@ vi
 			浏览器中输入ftp://linux的ip
 			如果见到pub目录说明安装成功
 			共享文件复制/var/ftp下
-			
+	c.自动安装(yum)
+		安装部署ecshop项目(php+apache+mysql)
+		1>配置yum
+			1.加载光驱
+			2.创建一个空目录用于挂载
+				mkdir /yum
+			3.挂载光驱到刚才创建好的目录
+				mount -o loop /dev/scd0 /yum
+			4.修改yum的配置文件
+				vim /etc/yum.repos.d/rhel-debuginfo.repo
+				[rhel-debuginfo]                      分组标识
+				name=test                             名字
+				baseurl=file:///yum/Server            自动安装到哪里去搜索软件包
+				enabled=1                             是否开启自动安装1开启，0关闭
+				gpgcheck=0                            是否检查光盘1检查，0不检查
+			5.清理yum缓存
+				yum clean all
+			6.搜索相关软件包
+				yum list | grep mysql 搜索mysql相关软件包
+			7.安装mysql相关软件包
+				yum install mysql* -y
+		2>安装php相关组件
+			yum install php* -y
+		3>安装apache相关组件
+			yum install http* -y
+		4>安装mysql相关组件
+			yum install mysql* -y
+		5>测试
+			service mysqld start
+			service httpd start
+			检查进程
+				ps -ef | grep mysqld
+				ps -ef 查看系统进程
+				|      管道，前面的输出作为后面的输入
+				grep   搜索
+				ps -ef |grep httpd
+			检查端口
+				apache 端口：80
+				netstat -an | grep 80
+				mysqld 端口：3306
+				netstat -an | grep 3306
+				netstat -an 查看系统中开放的端口
+		6>把ecshop压缩包解压，解压后文件夹传入linux中的/var/www/html下(winscp)
+		7>修改/var/www/html下的文件夹的权限
+			chmod 777 -R /var/www/html/ecshop1
+		8>浏览器中输入http://linux的IP/ecshop1按照提示安装
+			配置系统
+				数据库主机 localhost
+				端口号     3306
+				用户名     root
+				密码       
+				数据库名    test
+
+
+
+
+
+
+
 
 
 
