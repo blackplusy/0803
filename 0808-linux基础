@@ -122,8 +122,38 @@ vi
 				 chown simon install.log
 				 chown :bin install.log
 				 chown root:root install.log
-
-
+3.linux下的软件安装
+	a.软件安装的方式
+		1>手动安装(rpm安装)
+		2>自动安装(yum安装)
+		3>二进制文件安装
+		4>源码安装
+	b.rpm安装
+		redhat软件安装包都以.rpm结尾，通常放在光盘的Server目录下
+		如果需要下载最新版本软件，建议官网下载
+		vsftpd服务的搭建
+		1>安装操作系统
+		2>配置IP地址、主机名、绑定主机名
+		3>关闭防火墙、关闭selinux
+		4>加载光驱
+			右键标签--设置--cd/dvd--使用iso映像文件【已连接、启动时链接】
+		5>输入mount命令查看光盘对应目录
+			mount:查看系统挂载情况，type是iso9660的对应目录
+			如果没有找到/dev/scd0或者type是iso9660可以进行手动挂载
+			mount -o loop /dev/scd0 /mnt
+		6>进入到/mnt的Server目录下
+			cd /mnt/Server/
+		7>搜索vsftpd相关软件
+			ls | grep vsftpd
+		8>安装vsftpd服务
+			 rpm -ivh vsftpd-2.0.5-16.el5.i386.rpm
+		9>启动服务
+			service vsftpd start
+		10>测试
+			浏览器中输入ftp://linux的ip
+			如果见到pub目录说明安装成功
+			共享文件复制/var/ftp下
+			
 
 
 
