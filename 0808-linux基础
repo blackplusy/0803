@@ -1,0 +1,133 @@
+who
+whoami
+pwd
+cd
+ls
+man
+info
+setup
+ifconfig
+ping
+service
+mkdir
+rm
+cp
+mv
+touch
+echo
+cat
+less
+more
+head
+tail
+vi
+============================
+包、压缩文件、压缩包
+1.包(打包)
+	创建的包文件通常以.tar结尾
+	a.打包
+		tar -cvf test.tar install.log* Desktop/
+	b.查看包
+		tar -tvf test.tar
+		查看包文件中文件属性信息
+	c.解包（解包到指定目录需要加-C）
+		 tar -xvf test.tar
+		 tar -xvf test.tar -C /opt/
+2.压缩文件
+	a.查看文件大小
+		du -sh install.log
+	b.压缩文件
+		通常都是.gz结尾
+		du -sh install.log.gz
+	c.查看压缩文件压缩属性信息
+		gzip -l install.log.gz
+	d.解压压缩文件
+		gzip -d install.log.gz
+3.压缩包
+	先打包后压缩
+		tar -cvf test1.tar install.log*
+		gzip test1.tar
+	a.创建压缩包
+		压缩包文件通常以.tar.gz结尾或者以.tgz结尾
+		tar -czvf test2.tgz install.log*
+	b.查看压缩包
+		tar -tzvf test2.tgz
+	c.解压压缩包
+		tar -xzvf test2.tgz
+============================================
+2.用户和权限
+	a.用户
+		/etc/passwd   用户配置文件
+		/etc/shadow   密码配置文件
+		/etc/group    组配置文件
+		a1.创建用户
+			useradd simon   创建用户simon
+			passwd  simon   给simon用户设置密码
+		a2.修改用户(锁定和解锁)
+			usermod -L simon 锁定simon用户
+			usermod -U simon 解锁simon用户
+		a3.删除用户
+			userdel -r simon 删除simon用户
+	b.权限
+		b1.查看权限
+			ll install.log
+			-rw-r--r-- 1 root root 35807 08-08 00:26 install.log
+		b2.文件属性信息
+			1:文件类型
+				d:目录
+				-:普通文件
+			2-10:文件权限
+			11:文件节点
+			12:拥有者
+			13:拥有组
+			14:文件大小
+			15:最后修改时间
+			16:文件名字
+		b3.常见权限
+			r(读)
+				目录:可以列表
+				文件:可以查看文件内容
+			w(写)
+				目录:可以创建，删除，重命名文件
+				文件:可以修改文件内容
+			x(执行)
+				目录:可以进入
+				文件:可执行，通常是脚本文件或者二进制文件
+		b4.权限的分组
+			rw-             r--          r--
+			拥有者权限      拥有组权限    其他人权限
+		b5.系统判断权限的过程
+			1>判断用户是否是拥有者，如果是，赋予权限
+			2>判断用户是否是拥有组成员，如果是，赋予权限
+				id simon
+			3>如果都不是，赋予其他人权限
+		b6.修改权限
+			1>chmod 直接修改权限
+				1)字符方式
+					u   拥有者
+					g   拥有组
+					o   其他人
+					a   所有人
+					chmod u+x install.log
+					chmod g+x,o+x install.log
+					chmod a-x install.log
+				2)数字方式
+					r:4
+					w:2
+					x:1
+					-:0
+					chmod 777 install.log
+					chmod 000 install.log
+			2>chown 通过修改文件属主来修改权限
+				 chown simon install.log
+				 chown :bin install.log
+				 chown root:root install.log
+
+
+
+
+
+
+
+
+
